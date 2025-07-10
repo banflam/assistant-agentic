@@ -22,3 +22,10 @@ vectordb = FAISS.from_texts(["Family prefers late morning flights",
 memory = VectorStoreRetrieverMemory(
     retriever=vectordb.as_retriever(search_kwargs={"k": 3})
 )
+
+# Define Tools for the AI agent to use
+
+def mock_book_flight(details: str) -> str:
+    # TODO: call an airline API/flight tracker API
+    return json.dumps({"flight_id": "XY123", "details": details})
+
