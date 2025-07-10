@@ -2,7 +2,7 @@
 
 from langchain.agents import initialize_agent, Tool
 from langchain_community.llms import OpenAI
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.memory import VectorStoreRetrieverMemory
 from ics import Calendar, Event
