@@ -83,15 +83,24 @@ Tool(
 )
 ]
 
+tools.append(
+    Tool(name="BookHotel", func=mock_book_hotel,
+         description="Returns JSON about the chosen hotel; includes title/start/end for the stay")
+)
+
 # Initialize the actual Agent with Memory + Tools
 
 llm = OpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"), temperature = 0)
 
 prefix = (
-    "You are a travel-planning assistant.\n"
-    "For **every** flight, hotel night, and daytime activity you create,\n"
-    "call the `AddToCalendar` tool separately, so that the final calendar\n"
-    "contains one VEVENT per item. Do not stop until all items are added."
+    "You are an expert travel assistant.\n"
+    "Workflow you MUST follow:\n"
+    "1. Book the flight with BookFlight.\n"
+    "2. Book the hotel with BookHotel.\n"
+    "3. Find kid-friendly activities with FindActivities.\n"
+    "4. For **each** item (flight, hotel stay, every activity) call AddToCalendar "
+    "separately, passing a JSON string with title, start, end. "
+    "Do not produce Final Answer until at least 6 events have been added."
 )
 
 agent = initialize_agent(
