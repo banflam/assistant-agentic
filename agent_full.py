@@ -29,3 +29,15 @@ def mock_book_flight(details: str) -> str:
     # TODO: call an airline API/flight tracker API
     return json.dumps({"flight_id": "XY123", "details": details})
 
+def add_to_calendar(event_json: str) -> str:
+    event = Event()
+    data = json.loads(event_json)
+    event.name = data["title"]
+    event.begin = data["start"]
+    event.end = data["end"]
+    calendar = Calendar()
+    calendar.events.add(event)
+    path = tempfile.gettempdir() + "/trip_events.ics"
+    with open(path, "w") as f: f.writelines(calendar)
+    return f"Calendar written to {path}"
+
