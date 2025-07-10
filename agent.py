@@ -25,3 +25,15 @@ agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbos
 query = "Plan a family trip to Yosemite this weekend!"
 response = agent.run(query)
 print(response)
+
+final_plan = f"""
+Trip Plan Summary:
+{response}
+
+Steps Completed so far:
+1. Parsed user intent
+2. Queried web for trip info
+3. Generated trip plan
+
+Stack: OpenAI + LangChain for tool routing and autonomous AI
+"""
