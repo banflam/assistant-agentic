@@ -57,3 +57,19 @@ agent = initialize_agent(
     memory=memory,
     verbose=True,
 )
+
+# Run Agent
+
+user_request = """
+
+Plan and book a family trip from NYC to San Francisco for July 24-27.
+
+Include: 
+- Outbound flight
+- A hotel near Fisherman's Wharf
+- A minimum of three kid-friendly activities during the day
+- Add all itinerary items into the calendar
+"""
+
+result = agent.run(user_request)
+print(result)
