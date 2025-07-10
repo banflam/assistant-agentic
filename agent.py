@@ -20,3 +20,8 @@ llm = openai(temperature=0)
 
 tools = [search_tool]
 agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+
+
+query = "Plan a family trip to Yosemite this weekend!"
+response = agent.run(query)
+print(response)
