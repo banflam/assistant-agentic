@@ -1,8 +1,12 @@
 from langchain.tools import Tool
 from duckduckgo_search import DDGS
 from langchain.agents import initialize_agent
-from langchain.llms import openai
+from langchain_community.llms import OpenAI
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+openai_key = os.getenv("OPENAI_API_KEY")
 
 def web_search_tool(query: str) -> str:
     with DDGS() as ddgs:
@@ -16,7 +20,7 @@ search_tool = Tool(
     description="Search the web for real-time information"
 )    
 
-llm = openai(temperature=0)
+llm = OpenAI(temperature=0)
 
 tools = [search_tool]
 agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
