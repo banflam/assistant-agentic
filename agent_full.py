@@ -1,3 +1,5 @@
+# RAG Model: retrieval-augmented generation
+
 from langchain.agents import initialize_agent, Tool
 from langchain.llms import openai
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -45,3 +47,13 @@ tools = [
     Tool(name="BookFlight", func=mock_book_flight, description="Books a flight given details, returns JSON"),
     Tool(name="AddToCalendar", func=add_to_calendar, description="Takes an event JSON, writes it to an .ics calendar file and returns the path")
 ]
+
+# Initialize the actual Agent with Memory + Tools
+
+llm = OpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"), temperature = 0)
+agent = initialize_agent(
+    tools, llm,
+    agent="zero-shot-react-description",
+    memory=memory,
+    verbose=True,
+)
