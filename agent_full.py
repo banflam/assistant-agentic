@@ -34,6 +34,14 @@ def mock_book_flight(details: str) -> str:
     # TODO: call an airline API/flight tracker API
     return json.dumps({"flight_id": "XY123", "details": details})
 
+def mock_book_hotel(_: str) -> str:
+    return json.dumps({
+        "hotel_name": "Holiday Inn Express Fisherman's Wharf",
+        "title": "Hotel – Holiday Inn Express Fisherman's Wharf",
+        "start": "2025-07-24",
+        "end":   "2025-07-27"
+    })
+
 trip_calendar = Calendar()
 
 def add_to_calendar(event_json: str) -> str:
