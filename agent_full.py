@@ -41,3 +41,7 @@ def add_to_calendar(event_json: str) -> str:
     with open(path, "w") as f: f.writelines(calendar)
     return f"Calendar written to {path}"
 
+tools = [
+    Tool(name="BookFlight", func=mock_book_flight, description="Books a flight given details, returns JSON"),
+    Tool(name="AddToCalendar", func=add_to_calendar, description="Takes an event JSON, writes it to an .ics calendar file and returns the path")
+]
