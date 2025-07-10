@@ -1,14 +1,18 @@
 # RAG Model: retrieval-augmented generation
 
 from langchain.agents import initialize_agent, Tool
-from langchain.llms import openai
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_community.llms import OpenAI
+from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
 from langchain.memory import VectorStoreRetrieverMemory
 from ics import Calendar, Event
+from dotenv import load_dotenv
 import os
 import tempfile
 import json
+
+load_dotenv()
+
 
 # Memory setup using Vector DB as the vector database
 
